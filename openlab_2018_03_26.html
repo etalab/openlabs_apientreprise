@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Openlab API Entreprise</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+   /* Header/Footer stuff */
+div.my-header {
+    background-color: #0081d5;
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#0081d5), color-stop(0%,#0081d5), color-stop(0%,#ffffff), color-stop(15%,#ffffff), color-stop(65%,#0081d5), color-stop(100%,#0081d5));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 40px;
+    width: 100%;
+    text-align: left;
+}
+div.remark-slide-content { padding-top:2em}
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+      class: center, middle
+
+      # API Entreprise
+      ### _Openlab du 26 mars 2018_
+
+      ---
+      layout: true
+      <div class="my-header"><img src="https://entreprise.api.gouv.fr/website/assets/images/logo_site.svg" style="height: 40px;"/></div>
+      ---
+
+      # Sommaire
+
+
+      ### Etat des lieux, quelques chiffres
+      ### Transparence et qualité de service : nouvel espace client
+      ### Vie de l'API Entreprise
+      ### Calendrier
+
+      ---
+
+      # Etat des lieux, quelques chiffres
+
+      ### Infrastructure
+
+        * Tenue de charge : les volumes d'appels ont triplé sur les deux dernieres semaines, seuil franchi de 1 req / sec
+
+        * Est petit à petit montée en charge : sert aujourd'hui 2/3 des appels
+
+        * Taux uptime dashboard monitoré depuis le 17 février : 99,93 %
+
+        * Taux uptime infra api depuis mise en service le 4 décembre : 99,53% (incident de quelques heures le jour de noel)
+
+        * Des nouvelles du fallback insee : 99,99% de retours non 500 ! Notre fallback a pris le relai de manière notable 1 fois depuis le dernier open lab
+
+      ---
+
+      # Etat des lieux, quelques chiffres
+
+      ### Migrations en cours et bientôt effectives
+
+        * [RAPPEL] parametres obligatoires
+
+        * [RAPPEL] migration vers v2, 94% des appels se font sur la v2, il reste peu de temps
+
+        * [RAPPEL] Ancienne infrastructure mise à la retraite, https://entreprise.api.gouv.fr/documentation#faire-votre-migration-vers-la-nouvelle-infrastructure, 31 septembre 2018
+
+        * Prochaine migration, format de token / vers espace client obligatoire, échéance du 31 mars 2019, 1 an de délai. Plus sur ceci, après
+
+      ---
+
+      # Transparence et qualité de service : nouvel espace client et d'administration
+
+      ### Meilleure résolution des incidents et transparence
+
+        Actuellement le dashboard et le monitoring rendent des services mais :
+
+        * Dashboard actuel binaire (pas de possibilité de détecter les anomalies type desindexation partielles aisément)
+
+        * Dashboard actuel trop générique (pas de détection par client)
+
+        * Pas d'API permettant de faire son dashboard maison, avec des contournements et leurs impacts
+
+        * Impossible pour le métier de savoir sa consommation aisément sans allouer des ressources pour un monitoring fin
+
+      ---
+
+      # Transparence et qualité de service : nouvel espace client et d'administration (suite)
+
+      ### Le dashboard côté public
+
+        * Les traditionnels chiffres de consommation globaux par endpoint vont y être mis au vu et au su de tous, permettant de se tenir au courant
+
+        * La page d'information sur les incidents a commencé à se remplir, elle reste un point d'amélioration
+
+      ---
+
+      # Transparence et qualité de service : nouvel espace client et d'administration (suite)
+
+      ### Le dashboard côté client (suite)
+
+      Ce qui est fait :
+
+        * Possibilité de multi token (1 par application) avec copié collé directement depuis l'app (pas de confusion I et l)
+
+        * APIs de disponibilité affinées depuis le 4 décembre
+
+        * Logs des derniers appels
+
+        * Quelques chiffres sur votre consommation à 30h, 8 jours et 10 minutes
+
+        * Jauge de volume d'appels sur les dernières minutes pour ne pas dépasser le seuil de banissement des IPs
+
+      ---
+
+      # Transparence et qualité de service : nouvel espace client et d'administration (suite)
+
+      ### Le dashboard côté client (suite)
+
+      Ce qui vient :
+
+        * Gestion des tickets de support centralisée
+
+        * Documentation des APIs de disponibilités
+
+        * Possibilité de définir des alertes lorsqu'un évènement jugé anormal intervient (ex: hausse du seuil d'erreurs 404)
+
+        * Autres features au gré de vos retours et de votre besoin
+
+      ---
+
+      # Transparence et qualité de service : nouvel espace client et d'administration (suite)
+
+      ### Le dashboard côté équipe API Entreprise
+
+      Cela nous vous concerne pas directement mais certaines des évolutions à venir entraîneront
+      une meilleure capacité de dialogue et de résolution d'incidents fournisseurs :
+
+        * Moteur d'alertes permettant d'envoyer les emails ci dessus et de prévenir au plus tot
+
+        * Renforcement des traces plus de nos appels fournisseurs et des logs
+
+        * Autres features pour fluidifier le support de manière générale
+
+      ---
+
+      # Transparence et qualité de service : nouvel espace client et d'administration (suite)
+
+      ### Vous m'avez convaincu, je veux un espace client tout de suite !
+
+      Parfait, il y a cependant une condition qui est de s'inscrire et de passer à un nouveau format de token dit JWT.
+
+      ### Je ne veux pas d'espace client pour l'instant :(
+
+      Zut, l'espace client est néanmoins un passage obligé : qui dit montée en charge et complexité dit outils pour pouvoir gérer cela. L'espace client
+      sera donc obligatoire au 31 mars 2019, ce qui laisse 1 an de battement.
+
+      Pas de panique, les anciens tokens seront maintenus jusque là, et le passage de apientreprise.fr vers entreprise.api.gouv.fr (décommissionnement de
+      l'ancienne infrastructure) sera à priori la seule évolution entre temps. Vous serez guidé.e.s et la possibilité vous sera offerte de seulement changer de token pour vos appels
+
+      ---
+
+      # Transparence et qualité de service : nouvel espace client et d'administration (suite)
+
+      ### Halte la, pourquoi ce changement de token ?
+
+      Cela nous permet de paralléliser un grand nombre de machines identiques et d'avoir une infrastructure plus robuste pour la montée en charge de notre infrastructure. L'implémentation
+      de ce mode d'authentification nous permet également de gérer votre connexion à l'espace client et ouvre la possibilité de gérer vos appels à nos APIs de statut et indisponibilités de
+      manière a ce que la construction de vos dashboards et outils internes soient facilitée. La charge de développement est tres faible.
+
+      ---
+
+      # Vie de l'API Entreprise
+
+      En sus de ce qu'a dit M. Vrignaud
+
+        * Juridique "interne" : CGU en cours, il était necessaire de mettre un coup de neuf sur la charte signée. Le juridique intègre la notion d'espace client avant de nous faire un retour
+
+        * Fournisseurs : BdeF plateforme intégration OK, Douanes échanges fonctionnels en cours, le MAA nous fait des retours
+
+        * Comportement client de plus en plus fréquent : l'erreur de batch ou sur-monitoring (parfois abusif), le cas des répercussions URSSAF et notre action.
+
+      ---
+
+      # Calendrier
+
+        * **31 mars 2018 (dans 5 jours) : mise en retraite v1 plus paramètres obligatoires**
+
+        * **31 septembre 2018** : mise a la retraite d'apientreprise.fr et de l'ancienne infrastructure
+
+        * **31 mars 2019** : mise a la retraite de l'ancien format de tokens. L'inscription à l'espace client est obligatoire.
+      ---
+
+      # Perspectives
+
+        * Renforcement et onboarding espace client
+
+        * Documentations des API de disponibilité qui sont maintenant mures pour êtres ouvertes
+
+        * Ajout du champ APEN
+
+        * Enrichissement du dashboard par un espace client (multi tokens, volumétie souple, statistiques, autres ?)
+          abordé au prochain Openlab
+
+        * A votre demande : API de disponibilité, alimente notre dashboard, ouverture à des requêtes externes a suivre
+
+      ---
+
+      class: center, middle
+
+      # Merci
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
