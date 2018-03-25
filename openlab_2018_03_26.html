@@ -166,10 +166,8 @@ div.remark-slide-content { padding-top:2em}
       ### Je ne veux pas d'espace client pour l'instant :(
 
       Zut, l'espace client est néanmoins un passage obligé : qui dit montée en charge et complexité dit outils pour pouvoir gérer cela. L'espace client
-      sera donc obligatoire au 31 mars 2019, ce qui laisse 1 an de battement.
-
-      Pas de panique, les anciens tokens seront maintenus jusque là, et le passage de apientreprise.fr vers entreprise.api.gouv.fr (décommissionnement de
-      l'ancienne infrastructure) sera à priori la seule évolution entre temps. Vous serez guidé.e.s et la possibilité vous sera offerte de seulement changer de token pour vos appels
+      sera donc obligatoire au 31 mars 2019, ce qui laisse 1 an de battement.  Pas de panique, les anciens tokens seront maintenus jusque là, vous serez guidé.e.s
+      et la charge de développement pour se faire est très faible : c'est une substitution.
 
       ---
 
@@ -177,9 +175,11 @@ div.remark-slide-content { padding-top:2em}
 
       ### Halte la, pourquoi ce changement de token ?
 
-      Cela nous permet de paralléliser un grand nombre de machines identiques et d'avoir une infrastructure plus robuste pour la montée en charge de notre infrastructure. L'implémentation
-      de ce mode d'authentification nous permet également de gérer votre connexion à l'espace client et ouvre la possibilité de gérer vos appels à nos APIs de statut et indisponibilités de
-      manière a ce que la construction de vos dashboards et outils internes soient facilitée. La charge de développement est tres faible.
+        * Meilleur passage à l'échelle de notre infrastructure (parallèlisation)
+
+        * Meilleure transparence (découplage authentification du coeur logiciel)
+
+        * Meilleurs services, gestion d'appels à nos APIs de status et indispo en OAuth 2 ouverte ce qui vous permet d'intégrer notre donnée aisément dans vos dashboards et applicatifs
 
       ---
 
