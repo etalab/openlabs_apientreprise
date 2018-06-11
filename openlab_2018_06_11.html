@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Openlab API Entreprise</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+   /* Header/Footer stuff */
+div.my-header {
+    background-color: #0081d5;
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#0081d5), color-stop(0%,#0081d5), color-stop(0%,#ffffff), color-stop(15%,#ffffff), color-stop(65%,#0081d5), color-stop(100%,#0081d5));
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 40px;
+    width: 100%;
+    text-align: left;
+}
+div.remark-slide-content { padding-top:2em}
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+      class: center, middle
+
+      # API Entreprise
+      ### _Openlab du 11 juin  2018_
+
+      ---
+      layout: true
+      <div class="my-header"><img src="https://entreprise.api.gouv.fr/website/assets/images/logo_site.svg" style="height: 40px;"/></div>
+      ---
+
+      # Sommaire
+
+
+      ### Etat des lieux, quelques chiffres
+      ### Nouveau fournisseur : Banque de France
+      ### Ré-enrollement
+      ###
+      ### Vie de l'API Entreprise
+      ### Calendrier
+
+      ---
+
+      # Etat des lieux, quelques chiffres
+
+      ### Infrastructure
+
+        * Tenue de charge : les volumes d'appels ont triplé sur les deux dernieres semaines, seuil franchi de 1 req / sec
+
+        * Bascule bien avancée : sert aujourd'hui 4/5 des appels
+
+        * Taux uptime dashboard monitoré depuis le dernier open lab : 100 %
+
+        * Taux uptime infra api depuis dernier open lab  : 100 %
+
+        * Montée vers 2048 diffielman en cours
+
+      ---
+
+      # Etat des lieux, quelques chiffres
+
+      ### Migrations en cours et bientôt effectives
+
+        * [RAPPEL] Ancienne infrastructure mise à la retraite, https://entreprise.api.gouv.fr/documentation#faire-votre-migration-vers-la-nouvelle-infrastructure, 31 septembre 2018
+
+        * Prochaine migration, format de token / vers espace client obligatoire, échéance du 31 mars 2019.
+
+      ---
+
+      # Etat des lieux, quelques chiffres
+
+      ### Evolution des chiffres à surveiller
+
+        * Avec la multiplication des fournisseurs et des multi appels pour une entreprise bénéficiaire donnée, le simple chiffre d'appels ne suffit plus
+
+        * ~ 1 800 000 appels sur 30 jours glissants
+
+        * ~ 116 000 siren uniques
+
+        * travail de statistiques public toujours en cours
+
+      ---
+
+      # Nouveau fournisseur : Banque de France
+
+      ### Quelle donnée :
+
+        * comptes intermédiaires de gestion calculés (ebe, caf etc.)
+
+        * donnée brute (dettes, chiffres affaires ht etc.)
+
+        * evolutions d'un bilan a un autre
+
+      ---
+
+      # Nouveau fournisseur : Banque de France
+
+      ### Conditions d'utilisation
+
+        * Justification de l'usage
+
+        * Appels de nuit pas toujours possibles (opérations de maintenance et mise à jour)
+
+        * Bien regarder les quelques subtilités de délivrance de chiffre (ex: bilans de longueur inégale)
+
+        * Si donnée manquante, demander, la Banque de France pourra peut être enrichir et répondre à votre besoin
+
+      ---
+
+      # Ré-enrollement
+
+        * Lien démarches simplifiées pour se ré enroller, passer sur le nouvel espace client, avoir le nouveau format de token
+
+        * Acceptation des nouvelles CGU
+
+      ---
+
+      # Affinange de politique de versioning
+
+      ### Constat de départ
+
+        * La documentation dit ceci "Cette définition pourra évoluer pour englober les interventions ajoutant des fonctionnalités sur un endpoint donné ou améliorant la qualité de la donnée."
+
+        * Dans la pratique nous avons réalisé un ajout : APEN mais la notion de compatibilité ascendante et de savoir quels changements sont considérés "breaking" ne sont pas explicités
+
+      ---
+
+      # Affinange de politique de versioning
+
+      ### Affinage, on essaie d'avoir le meilleur des 2 mondes.
+
+        * La version actuelle devient non plus uniquement la version 2 (stable) mais comporte maintenant un numéro de version mineure 0
+
+        * Les ajouts de champs de données déclenchent un changement de version mineure
+
+        * Les suppressions de champs de données restent breaking et gelées
+
+        * L'affinage d'un code HTTP est inscrit dans le changelog et immédiatement répercuté (par ex, requalification d'erreurs 500 génériques en des erreurs 5xx plus fines). Considéré comme non breaking
+
+        * L'accès à une version mineure se fait par l'ajout d'un header ou d'un paramètre dans l'URL pour spécifier le numéro de version mineure
+
+        * Les changements sont répertoriés dans un changelog disponible dans la documentation qui est mise a jour au faire et a mesure
+
+      ---
+
+      # Calendrier
+
+        * **31 septembre 2018** : mise a la retraite d'apientreprise.fr et de l'ancienne infrastructure
+
+        * **31 mars 2019** : mise a la retraite de l'ancien format de tokens. L'inscription à l'espace client est obligatoire.
+
+      ---
+
+      class: center, middle
+
+      # Merci
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
